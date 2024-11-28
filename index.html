@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Prioridades Diaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #01BD39;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #01BD39;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #019e2f;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .cta a {
+            text-decoration: none;
+            color: white;
+            background-color: #01BD39;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .cta a:hover {
+            background-color: #019e2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Prioridades Diaria</h1>
+        <p>Introduce tus tareas diarias y su nivel de importancia y urgencia. Obtén un plan optimizado para gestionar tu tiempo eficientemente.</p>
+        
+        <form id="prioridadForm">
+            <div class="form-group">
+                <label for="tarea">Tarea:</label>
+                <input type="text" id="tarea" placeholder="Ej. Responder emails pendientes" required>
+            </div>
+            <div class="form-group">
+                <label for="impacto">Impacto (1 a 5):</label>
+                <select id="impacto" required>
+                    <option value="1">1 - Bajo</option>
+                    <option value="2">2</option>
+                    <option value="3">3 - Medio</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Alto</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="urgencia">Urgencia (1 a 5):</label>
+                <select id="urgencia" required>
+                    <option value="1">1 - Poco Urgente</option>
+                    <option value="2">2</option>
+                    <option value="3">3 - Moderadamente Urgente</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Muy Urgente</option>
+                </select>
+            </div>
+            <button type="button" onclick="clasificarTarea()">Clasificar Tarea</button>
+        </form>
+        
+        <div id="resultado" class="result" style="display: none;"></div>
+        
+        <div class="cta">
+            <p>Revoluciona tu Negocio con el Poder del Chat Inteligente</p>
+            <a href="https://klicana.work/tdivKK">SÍ! INSCRIBIRME A LUCRACHAT IA!</a>
+        </div>
+    </div>
+
+    <script>
+        function clasificarTarea() {
+            const tarea = document.getElementById('tarea').value;
+            const impacto = parseInt(document.getElementById('impacto').value);
+            const urgencia = parseInt(document.getElementById('urgencia').value);
+
+            let categoria;
+            let accion;
+
+            if (impacto >= 4 && urgencia >= 4) {
+                categoria = "Urgente e Importante";
+                accion = "Resuélvelo inmediatamente.";
+            } else if (impacto >= 4 && urgencia < 4) {
+                categoria = "Importante pero no Urgente";
+                accion = "Planifícalo para más tarde.";
+            } else if (impacto < 4 && urgencia >= 4) {
+                categoria = "Urgente pero no Importante";
+                accion = "Delegable. Pide a alguien más que lo gestione.";
+            } else {
+                categoria = "Ni Urgente ni Importante";
+                accion = "Elimínalo o ignóralo.";
+            }
+
+            const resultado = `
+                <h2>Resultado</h2>
+                <p><strong>Tarea:</strong> ${tarea}</p>
+                <p><strong>Categoría:</strong> ${categoria}</p>
+                <p><strong>Acción Recomendada:</strong> ${accion}</p>
+            `;
+
+            document.getElementById('resultado').innerHTML = resultado;
+            document.getElementById('resultado').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
